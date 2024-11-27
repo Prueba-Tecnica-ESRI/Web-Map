@@ -1,3 +1,5 @@
+@import 'https://js.arcgis.com/4.31/@arcgis/core/assets/esri/themes/dark/main.css';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,14 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
 body {
   margin: 0;
@@ -65,4 +59,19 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+arcgis-map {
+  display: block;
+  height: 60vh;
+  width: 60vh;
+}
+
+
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }

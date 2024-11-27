@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import { ArcgisMap } from '@arcgis/map-components-react';
+import "@arcgis/map-components/dist/components/arcgis-map";
+import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-components/dist/components';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [isDefault, setIsDefault] = useState(true);
+  const [base, setBase] = useState(null);
+  const [text, setText] = useState("Street");
+
+
+  function changeParams(){
+
+    if(isDefault){
+      setBase("streets");
+      setText("Default");
+      setIsDefault(false);
+      
+    } else {
+      setBase(null);
+      setText("Street");
+      setIsDefault(true);
+    }
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>ESRI Map</h1>
+      {isDefault ? <ArcgisMap center={"-74.05124, 4.67369"} zoom={20}></ArcgisMap>
+      : <ArcgisMap center={"-74.05124, 4.67369"} zoom={20} basemap={"streets"}></ArcgisMap>}
+      <br></br>
+      <button onClick={()=>{changeParams()}}>Change to {text} view</button>     
     </>
   )
 }
-
 export default App
